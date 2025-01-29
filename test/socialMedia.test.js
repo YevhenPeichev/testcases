@@ -1,14 +1,14 @@
-import LoginPage from '../pageobjects/login.page.js';
-import InventoryPage from '../pageobjects/inventory.page.js';
+import loginPage from '../pageobjects/login.page.js';
+import inventoryPage from '../pageobjects/inventory.page.js';
 
 describe('Social Media Links Tests', () => {
     beforeEach(async () => {
         await browser.url('https://www.saucedemo.com');
-        await LoginPage.login('standard_user', 'secret_sauce');
+        await loginPage.login('standard_user', 'secret_sauce');
     });
 
     it('should open Twitter link', async () => {
-        await InventoryPage.clickSocialMediaIcon(InventoryPage.twitterIcon);
+        await inventoryPage.clickSocialMediaIcon(inventoryPage.twitterIcon);
         const handles = await browser.getWindowHandles();
         await browser.switchToWindow(handles[1]);
         expect(await browser.getUrl()).toContain('twitter.com');
@@ -17,7 +17,7 @@ describe('Social Media Links Tests', () => {
     });
 
     it('should open Facebook link', async () => {
-        await InventoryPage.clickSocialMediaIcon(InventoryPage.facebookIcon);
+        await inventoryPage.clickSocialMediaIcon(inventoryPage.facebookIcon);
         const handles = await browser.getWindowHandles();
         await browser.switchToWindow(handles[1]);
         expect(await browser.getUrl()).toContain('facebook.com');
@@ -26,7 +26,7 @@ describe('Social Media Links Tests', () => {
     });
 
     it('should open LinkedIn link', async () => {
-        await InventoryPage.clickSocialMediaIcon(InventoryPage.linkedinIcon);
+        await inventoryPage.clickSocialMediaIcon(inventoryPage.linkedinIcon);
         const handles = await browser.getWindowHandles();
         await browser.switchToWindow(handles[1]);
         expect(await browser.getUrl()).toContain('linkedin.com');
