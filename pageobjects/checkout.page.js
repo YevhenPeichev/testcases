@@ -13,6 +13,10 @@ class CheckoutPage {
         await this.continueButton.click();
         await this.finishButton.click();
     }
+
+    async getCartEmptyMessage() {
+        return await this.cartEmptyMessage.getText();
+    }
 }
 
 export default new CheckoutPage();
