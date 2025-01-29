@@ -1,23 +1,23 @@
-import LoginPage from '../pageobjects/login.page.js';
-import InventoryPage from '../pageobjects/inventory.page.js';
-import CheckoutPage from '../pageobjects/checkout.page.js';
+import loginPage from '../pageobjects/login.page.js';
+import inventoryPage from '../pageobjects/inventory.page.js';
+import checkoutPage from '../pageobjects/checkout.page.js';
 
 describe('Checkout Tests', () => {
     beforeEach(async () => {
         await browser.url('https://www.saucedemo.com');
-        await LoginPage.login('standard_user', 'secret_sauce');
+        await loginPage.login('standard_user', 'secret_sauce');
     });
 
     it('should complete checkout with valid data', async () => {
-        await InventoryPage.addToCart(0); // Add first product to cart
-        await InventoryPage.cartButton.click();
-        await InventoryPage.checkoutButton.click();
-        await CheckoutPage.completeCheckout('John', 'Doe', '12345');
+        await inventoryPage.addToCart(0); // Add first product to cart
+        await inventoryPage.cartButton.click();
+        await inventoryPage.checkoutButton.click();
+        await checkoutPage.completeCheckout('John', 'Doe', '12345');
         expect(await browser.getUrl()).toContain('checkout-complete.html');
     });
 
     it('should show error when checking out with empty cart', async () => {
-        await InventoryPage.cartButton.click();
-        expect(await CheckoutPage.cartEmptyMessage.getText()).toContain('Your cart is empty');
+        await inventoryPage.cartButton.click();
+        expect(await checkoutPage.getCartEmptyMessage()).toContain('Your cart is empty');
     });
 });
