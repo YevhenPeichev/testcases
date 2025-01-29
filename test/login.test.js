@@ -1,5 +1,5 @@
-import LoginPage from '../pageobjects/login.page.js';
-import InventoryPage from '../pageobjects/inventory.page.js';
+import loginPage from '../pageobjects/login.page.js';
+import inventoryPage from '../pageobjects/inventory.page.js';
 
 describe('Login Tests', () => {
     beforeEach(async () => {
@@ -7,17 +7,17 @@ describe('Login Tests', () => {
     });
 
     it('should login with valid credentials', async () => {
-        await LoginPage.login('standard_user', 'secret_sauce');
+        await loginPage.login('standard_user', 'secret_sauce');
         expect(await browser.getUrl()).toContain('inventory.html');
     });
 
     it('should not login with invalid password', async () => {
-        await LoginPage.login('standard_user', 'wrong_password');
-        expect(await LoginPage.errorMessage.getText()).toContain('Epic sadface: Username and password do not match any user in this service');
+        await loginPage.login('standard_user', 'wrong_password');
+        expect(await loginPage.getErrorMessage()).toContain('Epic sadface: Username and password do not match any user in this service');
     });
 
     it('should not login with invalid login', async () => {
-        await LoginPage.login('invalid_user', 'secret_sauce');
-        expect(await LoginPage.errorMessage.getText()).toContain('Epic sadface: Username and password do not match any user in this service');
+        await loginPage.login('invalid_user', 'secret_sauce');
+        expect(await loginPage.getErrorMessage()).toContain('Epic sadface: Username and password do not match any user in this service');
     });
 });
