@@ -9,6 +9,10 @@ class LoginPage {
         await this.password.setValue(pass);
         await this.loginButton.click();
     }
+
+    async getErrorMessage() {
+        return await this.errorMessage.getText();
+    }
 }
 
 export default new LoginPage();
